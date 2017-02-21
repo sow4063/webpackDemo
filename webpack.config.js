@@ -18,6 +18,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './app/index.js',
@@ -32,6 +33,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
-    new HtmlWebpackPlugin({template: './src/index.html'})
+    new HtmlWebpackPlugin({template: './src/index.html'}),
+    new CopyWebpackPlugin([
+         {from: path.resolve( './src', 'index.html' )}
+      ])
   ]
 };
